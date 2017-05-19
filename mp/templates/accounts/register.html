@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+{% if message is not None %}
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Notification</strong> {{ message }}
+        </div>
+    {% endif %}
+
+<h1>Register Page</h1>
+<h4>Accounts App</h4>
+
+<form method="POST" action="{% url 'register' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>Username</td>
+    <td><input type='text' name='username' required></td>
+</tr>
+<tr>
+    <td>Password</td>
+    <td><input type='password' name='password' required></td>
+</tr>
+</table>
+
+<input type="submit" class="btn btn-primary" value="Create Account" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+<a href="{% url 'login' %}">Click here to sign in</a>
+
+    
+
+{% endblock %}

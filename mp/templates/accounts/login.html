@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<h1>Login Page</h1>
+<h4>Accounts Page</h4>
+
+    {% if message is not None %}
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Notification</strong> {{ message }}
+        </div>
+    {% endif %}
+
+<form method="POST" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>Username</td>
+    <td><input type='text' name='username' required></td>
+</tr>
+<tr>
+    <td>Password</td>
+    <td><input type='password' name='password' required></td>
+</tr>
+</table>
+
+<input type="submit" class="btn btn-success" value="login" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+<a href="{% url 'register' %}">Click here to create an account</a>
+
+    
+
+{% endblock %}

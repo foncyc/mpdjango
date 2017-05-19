@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    {% if message is not None %}
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Notification</strong> {{ message }}
+        </div>
+    {% endif %}
+
+    {% if not user.is_authenticated %}
+    
+    <h1>You are logged out</h1>
+    <h4>Beta Test Page</h4>
+    <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+    <a href="{% url 'beta_home' %}" class="btn btn-warning">
+        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
+    </a>
+    {% endif %}
+    
+    {% if user.is_authenticated %}
+    
+    <h1>You are currently logged in</h1>
+    <h4>Beta Test Page</h4>
+    
+    <a href="{% url 'logout' %}" class="btn btn-warning">Logout</a>
+
+    {% endif %}
+
+{% endblock%}
